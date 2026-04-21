@@ -1,2 +1,27 @@
-# gas-auto-travel-scheduler
-Automatically calculates travel times and adds transit schedules to Google Calendar using Google Apps Script &amp; Maps API. （Googleカレンダーの予定から移動時間を自動計算し、経路スケジュールを登録するGASスクリプトです。）
+# Survival DX - 自動経路登録スケジューラ (Phase 1)
+
+Googleカレンダーに登録された「場所」の情報を読み取り、拠点（自宅やオフィス）からの最適な移動経路と所要時間を自動計算して、カレンダーに「移動」予定を自動登録する Google Apps Script (GAS) です。
+
+## 概要
+人間の意思決定や行動管理をシステムに委ねる「自律型データエージェント」構想の第一歩（Phase 1）として開発されました。
+高価なサーバーは不要。GASとGoogle Maps API（標準搭載）のみで稼働します。
+
+## 主な機能
+- **未来予定の検知:** 1ヶ月先までの「場所」ラベル付き予定を自動で監視。
+- **動的ルーティング:** 一日の始まりは必ず「拠点」とし、連続する予定がある場合は「前の予定の場所」から次の経路を計算。
+- **帰還の自動化:** その日の任務（予定）がすべて終わったら、最終地点から拠点への「帰宅スケジュール」を自動生成。
+- **重複登録の防止:** 15分おき等の定期実行（トリガー）を行っても、同じ移動予定を重複して作らない安全設計。
+
+## 導入手順
+1. Google Apps Script ([script.google.com](https://script.google.com/)) を開き、新しいプロジェクトを作成します。
+2. `code.gs` の内容をコピーして貼り付けます。
+3. コード内の `HOME_ADDRESS = 'Enter_YOUR_ADDRESS';` の部分を、ご自身の起点となる住所（Googleマップで検索可能な形式）に変更してください。
+4. 時計マークの「トリガー」メニューから、`automateTravelScheduleFutureAndReturn` 関数を「時間主導型（例：15分おき）」で設定します。
+5. 初回実行時にGoogleの認証画面が出ますので、承認を行ってください。
+
+## 開発ノート
+詳細な開発背景やコードの解説、アーキテクチャ図については、以下のnote記事をご参照ください。
+* [note記事のURLをここに貼る]
+
+## ライセンス
+MIT License
